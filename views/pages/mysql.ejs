@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+
+  <p> Aqui estamos en mysql </p>
+  <button onclick="connectMysql()">Pulsa para conectar</button>
+
+</div>
+
+</body>
+
+<script>
+
+function connectMysql(){
+  console.log("en connectMysql");
+  var pool      =    mysql.createPool({
+        connectionLimit : 100,
+        host     : 'localhost',
+        user     : 'root',
+        password : '',
+        database : 'restful_api_demo',
+        debug    :  false
+    });
+    pool.getConnection(function(err,connection){
+        if(err) {
+          //self.stop(err);
+          console.log("error connecting");
+              //response.json('{ mysql: error }');
+        } else {
+          console.log("CONNECT");
+              //response.json('{ mysql: success }');
+
+          //self.configureExpress(connection);
+        }
+    });
+}
+
+</script>
+
+</html>
